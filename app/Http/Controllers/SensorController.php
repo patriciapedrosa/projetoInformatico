@@ -22,18 +22,6 @@ class SensorController extends Controller
         $sensors = Sensor::where('controlador_id', $controlador->id)->orderBy('id')->paginate(10);
         $pins = Pin::all();
 
-
-        if(count($sensors)>0){
-           Controlador::where('id',$controlador->id)->update([
-            'configurado'=>1
-        ]); 
-       }
-       else{ //=0
-           Controlador::where('id',$controlador->id)->update([
-            'configurado'=>0
-        ]); 
-       }
-
         return view('sensor.list',compact('sensors', 'pins','controlador'));
     }
 
@@ -63,14 +51,18 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($controlador);
+        //dd($request->controlador_id);
         $sensor = new Sensor();
         $sensor->fill($request->all());
         $sensor->created_at = Carbon::now();
         $sensor->save();
 
+        Controlador::where('id',$request->controlador_id)->update([
+            'configurado'=>1
+            ]); 
+
         return redirect()
-        ->route('controlador.list');
+        ->route('sensor.showSensor',compact('sensor'));
     }
 
     /**

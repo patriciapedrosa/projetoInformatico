@@ -40,7 +40,7 @@ Route::get('/sensor/{sensor}', 'SensorController@showSensor')->name('sensor.show
 //edit
 Route::get('/sensor/{sensor}/edit', 'SensorController@edit')->name('sensor.edit');
 Route::post('/sensor/{sensor}/edit', 'SensorController@update')->name('sensor.update');
-
+//Route::get('/sensor/{sensor}','SensorController@showSensor')->name('sensor.view_sensor');
 
 
 Route::get('/controladores', 'ControladorController@index')->name('controlador.list');

@@ -8,9 +8,8 @@
                 <div class="card-header">
                     <h3>Adicionar Sensor
                     </h3></div>
-{{$controlador->id}}
 <div class="container">
-    <form action="{{route('sensor.store', $sensor, $controlador)}}" method="post" class="form-group" enctype="multipart/form-data">
+    <form action="{{route('sensor.store', $sensor->controlador_id)}}" method="post" class="form-group" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nome">Nome</label>
             <input
@@ -46,7 +45,7 @@
                 
         <div class="form-group">
             <button type="submit" class="btn btn-success" id="ok" name="ok">Save</button>
-            <a class="btn btn-default" href="{{ route('controlador.list') }}" id="cancel">Cancel</a>
+            <a class="btn btn-default" href="{{ route('sensor.list', $controlador->id) }}" id="cancel">Cancel</a>
         </div>
         {{csrf_field()}}
     </form>

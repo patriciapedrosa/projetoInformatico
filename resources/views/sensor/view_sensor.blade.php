@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{$sensor->id}} </div>
+                <div class="card-header">{{$sensor->nome}} </div>
                  @if(is_null($sensor->nome))
        
                 @else
@@ -24,16 +24,10 @@
                     <p><b>Leitura:</b>
                     {{$sensor->leitura}}</p>
                 @endif
-                @if(is_null($sensor->configurado))
-       
-                @else
-                    <p><b>Configurado:</b>
-                    {{$sensor->ConfiguradoToStr()}}</p>
-                @endif
-
 
 
             </div>
+            <a class="btn btn-primary" style="float:right" href="{{route('sensor.list', $sensor->controlador_id)}}"> Voltar </a> 
         </div>
     </div>
 </div>

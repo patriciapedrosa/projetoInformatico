@@ -10,7 +10,6 @@
                         
                     <a class="btn btn-xs btn-success" style="float:right" href="{{ route('sensor.create', $controlador)}}">Adicionar Sensor</a>
                     </h3></div>
-                    <div>{{$controlador}}</div>
 
                 @if (count($sensors)) 
                 <table class="table table-striped">
@@ -31,7 +30,7 @@
                                 {{$sensor->nome}}
                             </td>
                             <td>
-                                {{$sensor->tipo}}
+                                {{$sensor->tipoToStr()}}
                             </td>
                             <td>
                                 {{$sensor->leitura}}
@@ -57,8 +56,13 @@
                     @else 
                     <h2>Não foram encontrados sensores</h2>
                     @endif
+                    <div class="row justify-content-center">
+                    <div class="pagination" align="middle" > {{$sensors->links()}}</div>
+                    </div>
             </div>
+
         </div>
     </div>
+
 </div>
 @endsection

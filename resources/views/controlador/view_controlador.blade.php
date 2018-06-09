@@ -33,7 +33,7 @@
 
 
             </div>
-<a class="btn btn-primary" style="float:right" href="{{route('controlador.list')}}"> Voltar </a> 
+        <a class="btn btn-primary" style="float:right" href="{{route('controlador.list')}}"> Voltar </a> 
         </div>
     </div>
 </div>

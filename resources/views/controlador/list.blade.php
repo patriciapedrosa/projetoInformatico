@@ -51,6 +51,9 @@
 
                     <h2>Não foram encontrados controladores</h2>
                     @endif
+                    <div class="row justify-content-center">
+                    <div class="pagination" align="middle" > {{$controladores->links()}}</div>
+                    </div>
             </div>
         </div>
     </div>
