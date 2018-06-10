@@ -30,10 +30,12 @@
                     <p><b>Configurado:</b>
                     {{$controlador->ConfiguradoToStr()}}</p>
                 @endif
-
+<div class="row justify-content-center">
+     <a class="btn btn-primary" style="float:right" href="{{route('controlador.list')}}"> Voltar </a> 
+</div>
 
             </div>
-        <a class="btn btn-primary" style="float:right" href="{{route('controlador.list')}}"> Voltar </a> 
+       
         </div>
     </div>
 </div>

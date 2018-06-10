@@ -24,10 +24,12 @@
                     <p><b>Leitura:</b>
                     {{$sensor->leitura}}</p>
                 @endif
-
+<div class="row justify-content-center">
+    <a class="btn btn-primary" style="float:right" href="{{route('sensor.list', $sensor->controlador_id)}}"> Voltar </a> 
+</div>
 
             </div>
-            <a class="btn btn-primary" style="float:right" href="{{route('sensor.list', $sensor->controlador_id)}}"> Voltar </a> 
+            
         </div>
     </div>
 </div>
