@@ -41,7 +41,11 @@ Route::get('/sensor/{sensor}', 'SensorController@showSensor')->name('sensor.show
 Route::get('/sensor/{sensor}/edit', 'SensorController@edit')->name('sensor.edit');
 Route::post('/sensor/{sensor}/edit', 'SensorController@update')->name('sensor.update');
 //Route::get('/sensor/{sensor}','SensorController@showSensor')->name('sensor.view_sensor');
-
+Route::delete('sensor/{sensor}/delete','SensorController@destroy')->name('sensor.delete');
 
 Route::get('/controladores', 'ControladorController@index')->name('controlador.list');
 Route::get('/controladores/{controlador}', 'ControladorController@showControlador')->name('controlador.showControlador');
+
+
+Route::get('/pin/{sensor}/addPin','PinController@create')->name('pin.create');
+Route::post('/pin/storePin','PinController@store')->name('pin.store');

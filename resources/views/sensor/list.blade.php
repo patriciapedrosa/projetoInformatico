@@ -19,7 +19,6 @@
                                 <th>Nome</th>
                                 <th>Tipo</th>
                                 <th>Leitura</th>
-                                <th>Pins</th>
                                 <th>Acoes</th>
                             </tr>
                         </thead>
@@ -35,18 +34,15 @@
                             <td>
                                 {{$sensor->leitura}}
                             </td>
-                            <td>
-                                @foreach ($pins as $pin)
-                                {{$pin->id}}
-                                @endforeach
-                            </td>
+
                             
                             <td>
-
-                                @can('update', $sensor)
-                                     <a class="btn btn-success" href="{{route('sensor.edit', $sensor->id)}}">Configurar</a>
-                                     @endcan
                                 <a class="btn btn-info" href="{{route('sensor.showSensor', $sensor)}}">Ver sensor</a>
+                                <form action="{{ route('sensor.delete',$sensor) }}" method="POST" accept-charset="utf-8" >
+                                {{method_field('delete')}}
+                                {{csrf_field()}}
+                                <button type="submit" class="btn btn-xs btn-danger">Remover</button>
+                                </form>
                             </td>
 
                         </tr>

@@ -19,14 +19,23 @@
                     {{$sensor->tipoToStr()}}</p>
                 @endif
                 @if(is_null($sensor->leitura))
-       
+        
                 @else
                     <p><b>Leitura:</b>
                     {{$sensor->leitura}}</p>
                 @endif
-<div class="row justify-content-center">
-    <a class="btn btn-primary" style="float:right" href="{{route('sensor.list', $sensor->controlador_id)}}"> Voltar </a> 
-</div>
+
+                
+                    <p><b>Pins:</b>
+                        @foreach ($pin as $pins)
+                        {{$pins->numero_pin}}
+                    @endforeach
+                    <a class="btn btn-xs btn-success" href="{{ route('pin.create', $sensor)}}">Adicionar Pin</a></p>
+                
+                
+                <div class="row justify-content-center">
+                    <a class="btn btn-primary" style="float:right" href="{{route('sensor.list', $sensor->controlador_id)}}"> Voltar </a> 
+                </div>
 
             </div>
             

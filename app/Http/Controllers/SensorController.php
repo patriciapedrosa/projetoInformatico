@@ -17,17 +17,28 @@ class SensorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Controlador $controlador)
+    public function index(Controlador $controlador, Sensor $sensor)
     {
         $sensors = Sensor::where('controlador_id', $controlador->id)->orderBy('id')->paginate(10);
-        $pins = Pin::all();
+        //$pins = Pin::where('sensor_id', $sensor->id);
 
-        return view('sensor.list',compact('sensors', 'pins','controlador'));
+        if(count($sensors)>0){
+        Controlador::where('id',$controlador->id)->update([
+            'configurado'=>1
+            ]);
+        }else{
+            Controlador::where('id',$controlador->id)->update([
+            'configurado'=>0
+            ]);
+        }
+
+        return view('sensor.list',compact('sensors','controlador'));
     }
 
     public function showSensor(Sensor $sensor)
     {
-        $pin = Pin::where('sensor_id', $sensor->id);
+        $pin = Pin::where('sensor_id', $sensor->id)->get();
+        //dd($pin->numero_pin);
         return view('sensor.view_sensor', compact('sensor', 'pin'));
     }
 
@@ -39,8 +50,7 @@ class SensorController extends Controller
     public function create(Controlador $controlador)
     {
         $sensor = new Sensor();
-        $pins = new Pin();
-        return view('sensor.add', compact('sensor', 'pins', 'controlador'));
+        return view('sensor.add', compact('sensor', 'controlador'));
     }
 
     /**
@@ -117,8 +127,6 @@ class SensorController extends Controller
     public function destroy(Sensor $sensor)
     {
         $sensor->delete();
-        return redirect()
-        ->route('sensor.list')
-        ->with('success', 'Sensor deleted successfully');
+        return redirect()->back();
     }
 }

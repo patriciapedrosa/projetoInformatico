@@ -11,7 +11,7 @@
 <div class="container">
     <form action="{{route('sensor.store', $sensor->controlador_id)}}" method="post" class="form-group" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="nome">Nome</label>
+            <b><label for="nome">Nome</label></b>
             <input
             type="text" class="form-control"
             name="nome" id="nome"
@@ -19,26 +19,24 @@
         </div>
 
 <div class="form-group">
-    <p><label for="name">Tipo</label> </p>
+    <p><b><label for="name">Tipo</label> </b></p>
         <input type="radio" name="tipo" value="0">Analogico<br>
         <input type="radio" name="tipo" value="1">Digital
 </div>
 
 
         <div class="form-group">
-            <label for="leitura">Leitura</label>
+            <b><label for="leitura">Leitura</label></b>
             <input
             type="text" class="form-control"
             name="leitura" id="leitura"
             placeholder="leitura" value="{{old('leitura', $sensor->leitura)}}" />
         </div>
 
+
         <div class="form-group">
-            <label for="controlador_id">Controlador_id</label>
-            <input
-            type="text" class="form-control"
-            name="controlador_id" id="controlador_id"
-            placeholder="controlador_id" value="{{old('controlador_id', $controlador->id)}}" />
+            <p><b><label for="controlador_id">Controlador_id</label></b></p>
+            <input type="radio" name="controlador_id" value="{{$controlador->id}}" checked> {{$controlador->id}}<br>
         </div>
 
 

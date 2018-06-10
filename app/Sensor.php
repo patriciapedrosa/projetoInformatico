@@ -24,10 +24,10 @@ class Sensor extends Model
     }
 
 
-   /* public function pins()
+    public function pins()
     {
-        return $this->hasMany(\App\Pin::class, 'pins_id');
-    }*/
+        return $this->hasMany(\App\Pin::class, 'pin_id');
+    }
 
     public function controlador()
     {

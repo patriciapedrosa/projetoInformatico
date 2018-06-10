@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Pin;
+use App\Sensor;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class PinController extends Controller
 {
@@ -25,9 +28,10 @@ class PinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Sensor $sensor)
     {
-        //
+        $pin = new Pin();
+        return view('pin.add', compact('sensor', 'pin'));
     }
 
     /**
@@ -38,7 +42,14 @@ class PinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sensor = $request->sensor_id;
+        $pin = new Pin();
+        $pin->fill($request->all());
+        $pin->created_at = Carbon::now();
+        $pin->save();
+
+        return redirect()
+        ->route('sensor.showSensor', compact('sensor'));
     }
 
     /**
