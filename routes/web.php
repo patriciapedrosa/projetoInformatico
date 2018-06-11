@@ -49,3 +49,7 @@ Route::get('/controladores/{controlador}', 'ControladorController@showControlado
 
 Route::get('/pin/{sensor}/addPin','PinController@create')->name('pin.create');
 Route::post('/pin/storePin','PinController@store')->name('pin.store');
+
+Route::get('/rede', 'RedeController@show')->name('rede.show');
+Route::get('/rede/configurar','RedeController@create')->name('rede.create');
+Route::post('/rede/store','RedeController@store')->name('rede.store');
