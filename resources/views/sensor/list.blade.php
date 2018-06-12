@@ -28,16 +28,15 @@
                             {{$sensor->nome}}
                         </td>
                         <td>
-                            {{$sensor->tipoToStr()}}
+                            {{$sensor->tipo}}
                         </td>
                         <td>
                             {{$sensor->leitura}}
                         </td>
-
-
                         <td>
-                            <a class="btn btn-info" href="{{route('sensor.showSensor', $sensor)}}">Ver sensor</a>
-                            <form action="{{ route('sensor.delete',$sensor) }}" method="POST" accept-charset="utf-8">
+                            <a class="btn btn-info" href="{{route('sensor.show', [$controlador->id,$sensor->id])}}">Ver</a>
+                            <a class="btn btn-warning" href="{{route('sensor.edit', [$controlador->id,$sensor->id])}}">Editar</a>
+                            <form action="{{ route('sensor.delete', [$controlador->id,$sensor]) }}" method="POST" accept-charset="utf-8">
                                 {{method_field('delete')}} {{csrf_field()}}
                                 <button type="submit" class="btn btn-xs btn-danger">Remover</button>
                             </form>

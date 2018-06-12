@@ -27,30 +27,29 @@ Route::get('/', function () {
     }
 });
 
-Route::get('/acercaDe', 'HomeController@acercaDe')->name('acercade');
+Route::middleware('auth')->get('/acercaDe', 'HomeController@acercaDe')->name('acercade');
 
 //add
-Route::get('controladores/{controlador_id}/create', 'SensorController@create')->name('sensor.create');
-Route::post('controladores/{controlador_id}/create', 'SensorController@store')->name('sensor.store');
 
-//ver lista de sensores
-Route::get('controladores/{controlador_id}/sensores/', 'SensorController@index')->name('sensor.list');
-//ver um sensor
-Route::get('/sensor/{sensor}', 'SensorController@showSensor')->name('sensor.showSensor');
-//edit
-Route::get('/sensor/{sensor}/edit', 'SensorController@edit')->name('sensor.edit');
-Route::post('/sensor/{sensor}/edit', 'SensorController@update')->name('sensor.update');
-//Route::get('/sensor/{sensor}','SensorController@showSensor')->name('sensor.view_sensor');
-Route::delete('sensor/{sensor}/delete', 'SensorController@destroy')->name('sensor.delete');
+//Sensores
+Route::middleware('auth')->get('controladores/{controlador_id}/sensores/create', 'SensorController@create')->name('sensor.create');
+Route::middleware('auth')->post('controladores/{controlador_id}/sensores/create', 'SensorController@store')->name('sensor.store');
+Route::middleware('auth')->get('controladores/{controlador_id}/sensores/', 'SensorController@index')->name('sensor.list');
+Route::middleware('auth')->get('/controladores/{controlador_id}/sensores/{sensor_id}', 'SensorController@showSensor')->name('sensor.show');
+Route::middleware('auth')->get('/controladores/{controlador_id}/sensor/{sensor_id}/edit', 'SensorController@edit')->name('sensor.edit');
+Route::middleware('auth')->post('/controladores/{controlador_id}/sensor/{sensor_id}/edit', 'SensorController@update')->name('sensor.update');
+Route::middleware('auth')->delete('controladores/{controlador_id}/sensores/{sensor}/delete', 'SensorController@destroy')->name('sensor.delete');
 
-Route::get('/controladores', 'ControladorController@index')->name('controlador.list');
-Route::get('/controladores/create', 'ControladorController@create')->name('controlador.create');
-Route::post('/controladores/store', 'ControladorController@store')->name('controlador.store');
-Route::get('/controladores/{controlador}', 'ControladorController@showControlador')->name('controlador.showControlador');
+//Controladores
+Route::middleware('auth')->get('/controladores', 'ControladorController@index')->name('controlador.list');
+Route::middleware('auth')->get('/controladores/create', 'ControladorController@create')->name('controlador.create');
+Route::middleware('auth')->post('/controladores/store', 'ControladorController@store')->name('controlador.store');
+Route::middleware('auth')->get('/controladores/{controlador}', 'ControladorController@showControlador')->name('controlador.showControlador');
 
-Route::get('/pin/{sensor}/addPin', 'PinController@create')->name('pin.create');
-Route::post('/pin/storePin', 'PinController@store')->name('pin.store');
+//Pins
+Route::middleware('auth')->get('/controladores/{controlador_id}/sensores/{sensor_id}/pins/create', 'PinController@create')->name('pin.create');
+Route::middleware('auth')->post('/controladores/{controlador_id}/sensores/{sensor_id}/pins/create', 'PinController@store')->name('pin.store');
 
-Route::get('/rede', 'RedeController@show')->name('rede.show');
-Route::get('/rede/configurar', 'RedeController@configure')->name('rede.configure');
-Route::post('/rede/edit', 'RedeController@edit')->name('rede.edit');
+Route::middleware('auth')->get('/rede', 'RedeController@show')->name('rede.show');
+Route::middleware('auth')->get('/rede/configurar', 'RedeController@configure')->name('rede.configure');
+Route::middleware('auth')->post('/rede/edit', 'RedeController@edit')->name('rede.edit');

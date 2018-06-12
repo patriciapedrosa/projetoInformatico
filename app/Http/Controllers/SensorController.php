@@ -21,15 +21,15 @@ class SensorController extends Controller
         $controlador = Controlador::findOrFail($controlador_id);
         $sensors = Sensor::where('controlador_id', $controlador_id)->orderBy('id')->paginate(10);
         //$pins = Pin::where('sensor_id', $sensor->id);
-
         return view('sensor.list', compact('sensors', 'controlador'));
     }
 
-    public function showSensor(Sensor $sensor)
+    public function showSensor($controlador_id, $sensor_id)
     {
-        $pin = Pin::where('sensor_id', $sensor->id)->get();
+        $sensor = Sensor::findOrFail($sensor_id);
+        $pins = Pin::where('sensor_id', $sensor_id)->get();
         //dd($pin->numero_pin);
-        return view('sensor.view_sensor', compact('sensor', 'pin'));
+        return view('sensor.view_sensor', compact('sensor', 'pins'));
     }
 
     /**
@@ -82,9 +82,11 @@ class SensorController extends Controller
      * @param  \App\Sensor  $sensor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sensor $sensor)
+    public function edit($controlador_id, $sensor_id)
     {
-        return view('sensor.edit', compact('sensor'));
+        $sensor = Sensor::findOrFail($sensor_id);
+        $sensor_types = SensorType::all();
+        return view('sensor.edit', compact('sensor', 'sensor_types'));
     }
 
     /**
@@ -94,17 +96,17 @@ class SensorController extends Controller
      * @param  \App\Sensor  $sensor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sensor $sensor)
+    public function update(Request $request, $controlador_id, $sensor_id)
     {
-        Sensor::where('id', $id)->update([
+        Sensor::findOrFail($sensor_id)->update([
             'nome' => $request->input('nome'),
             'tipo' => $request->input('tipo'),
-            'leitura' => $request->input('leitura'),
+            'tipo_leitura' => $request->input('tipo_leitura'),
             'updated_at' => Carbon::now(),
         ]);
 
         return redirect()
-            ->route('sensor.list')
+            ->route('sensor.list', compact('controlador_id'))
             ->with('success', 'Sensor configurado com sucesso');
     }
 
@@ -114,9 +116,12 @@ class SensorController extends Controller
      * @param  \App\Sensor  $sensor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sensor $sensor)
+    public function destroy($controlador_id, $sensor_id)
     {
+        $sensor = Sensor::findOrFail($sensor_id);
         $sensor->delete();
-        return redirect()->back();
+        return redirect()
+            ->route('sensor.list', compact('controlador_id'))
+            ->with('success', 'Sensor apagado com sucesso');
     }
 }

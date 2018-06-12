@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Pin;
 use App\Sensor;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Illuminate\Http\Request;
 
 class PinController extends Controller
 {
@@ -17,10 +16,10 @@ class PinController extends Controller
      */
     public function index(Sensor $sensor)
     {
-        
+
         $pins = Pin::where('sensor_id', $sensor->id)->orderBy('id')->paginate(10);
 
-        return view('sensor.list',compact('pins'));
+        return view('sensor.list', compact('pins'));
     }
 
     /**
@@ -28,8 +27,9 @@ class PinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Sensor $sensor)
+    public function create($controlador_id, $sensor_id)
     {
+        $sensor = Sensor::findOrFail($sensor_id);
         $pin = new Pin();
         return view('pin.add', compact('sensor', 'pin'));
     }
@@ -40,16 +40,17 @@ class PinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $controlador_id, $sensor_id)
     {
-        $sensor = $request->sensor_id;
+        $sensor = Sensor::findOrFail($sensor_id);
         $pin = new Pin();
+        $pin->sensor_id = $sensor->id;
         $pin->fill($request->all());
         $pin->created_at = Carbon::now();
         $pin->save();
 
         return redirect()
-        ->route('sensor.showSensor', compact('sensor'));
+            ->route('sensor.showSensor', compact('controlador_id','sensor_id'));
     }
 
     /**

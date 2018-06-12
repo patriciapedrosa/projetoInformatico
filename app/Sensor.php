@@ -11,19 +11,6 @@ class Sensor extends Model
     ];
     
 
-    public function tipoToStr()
-    {
-        switch ($this->tipo) {
-            case 0:
-            return 'Analogico';
-            case 1:
-            return 'Digital'; 
-        }
-
-        return 'Unknown';
-    }
-
-
     public function pins()
     {
         return $this->hasMany(\App\Pin::class, 'pin_id');
