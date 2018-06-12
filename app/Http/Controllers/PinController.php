@@ -18,7 +18,6 @@ class PinController extends Controller
     {
 
         $pins = Pin::where('sensor_id', $sensor->id)->orderBy('id')->paginate(10);
-
         return view('sensor.list', compact('pins'));
     }
 
@@ -50,7 +49,7 @@ class PinController extends Controller
         $pin->save();
 
         return redirect()
-            ->route('sensor.showSensor', compact('controlador_id','sensor_id'));
+            ->route('sensor.show', compact('controlador_id', 'sensor_id'));
     }
 
     /**

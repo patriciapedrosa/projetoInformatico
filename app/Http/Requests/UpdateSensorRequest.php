@@ -25,7 +25,7 @@ class UpdateSensorRequest extends FormRequest
     {
         return [
             'nome' => 'required|alpha_dash',
-            'tipo' => 'required|boolean'
+            'tipo' => 'required|boolean',
             'leitura' => 'required|alpha_dash',
             //'pins_id' => 'required|between:1,9'
         ];

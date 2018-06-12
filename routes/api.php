@@ -17,7 +17,9 @@
 
 Route::post('/controladores', 'ControladorController@create');
 Route::post('/loginControladorManager', 'LoginControllerAPI@loginControladorManager');
+
 Route::middleware('auth:api')->post('/registerMac', 'MacControllerAPI@add');
+Route::middleware('auth:api')->get('/networkConfiguration', 'RedeControllerAPI@getInformation');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
