@@ -8,7 +8,7 @@
                     </h3>
                 </div>
                 <div class="container">
-                    <form action="{{route('rede.edit', $rede)}}" method="post" class="form-group" enctype="multipart/form-data">
+                    <form action="{{route('rede.edit')}}" method="post" class="form-group" enctype="multipart/form-data">
                         <div class="form-group">
                             <b>
                                 <label for="nome">IP</label>

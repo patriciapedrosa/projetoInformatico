@@ -6,22 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Controlador extends Model
 {
-	protected $fillable = [
-        'id','mac','configurado'
+    protected $fillable = [
+        'id', 'mac', 'configurado',
     ];
 
     public function sensores()
     {
-    	return $this->hasMany(\App\Sensor::class, 'sensor_id');
+        return $this->hasMany(\App\Sensor::class, 'sensor_id');
     }
 
     public function ConfiguradoToStr()
     {
         switch ($this->configurado) {
             case 0:
-            return 'NAO';
+                return 'NAO';
             case 1:
-            return 'SIM'; 
+                return 'SIM';
         }
         return 'Unknown';
     }

@@ -8,7 +8,7 @@
                     </h3>
                 </div>
                 <div class="container">
-                    <form action="{{route('controlador.store', $controlador->controlador_id)}}" method="post" class="form-group" enctype="multipart/form-data">
+                    <form action="{{route('controlador.store')}}" method="post" class="form-group" enctype="multipart/form-data">
                         <div class="form-group">
                             <b>
                                 <label for="nome">MAC Adress</label>

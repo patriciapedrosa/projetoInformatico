@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Sensor;
 use App\Controlador;
-use Illuminate\Http\Request;
-use App\Http\Requests\UpdateSensorRequest;
-use App\Http\Requests\StoreSensorRequest;
 use App\Pin;
+use App\Sensor;
+use App\SensorType;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class SensorController extends Controller
 {
@@ -17,22 +16,13 @@ class SensorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Controlador $controlador, Sensor $sensor)
+    public function index($controlador_id)
     {
-        $sensors = Sensor::where('controlador_id', $controlador->id)->orderBy('id')->paginate(10);
+        $controlador = Controlador::findOrFail($controlador_id);
+        $sensors = Sensor::where('controlador_id', $controlador_id)->orderBy('id')->paginate(10);
         //$pins = Pin::where('sensor_id', $sensor->id);
 
-        if(count($sensors)>0){
-        Controlador::where('id',$controlador->id)->update([
-            'configurado'=>1
-            ]);
-        }else{
-            Controlador::where('id',$controlador->id)->update([
-            'configurado'=>0
-            ]);
-        }
-
-        return view('sensor.list',compact('sensors','controlador'));
+        return view('sensor.list', compact('sensors', 'controlador'));
     }
 
     public function showSensor(Sensor $sensor)
@@ -47,10 +37,12 @@ class SensorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Controlador $controlador)
+    public function create($controlador_id)
     {
+        $controlador = Controlador::findOrFail($controlador_id);
         $sensor = new Sensor();
-        return view('sensor.add', compact('sensor', 'controlador'));
+        $sensor_types = SensorType::all();
+        return view('sensor.add', compact('sensor', 'controlador', 'sensor_types'));
     }
 
     /**
@@ -59,20 +51,18 @@ class SensorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $controlador_id)
     {
         //dd($request->controlador_id);
         $sensor = new Sensor();
         $sensor->fill($request->all());
         $sensor->created_at = Carbon::now();
+        $controlador = Controlador::findOrFail($controlador_id);
+        $sensor->controlador_id = $controlador->id;
         $sensor->save();
 
-        Controlador::where('id',$request->controlador_id)->update([
-            'configurado'=>1
-            ]); 
-
         return redirect()
-        ->route('sensor.showSensor',compact('sensor'));
+            ->route('sensor.list', compact('sensor', 'controlador_id'));
     }
 
     /**
@@ -106,16 +96,16 @@ class SensorController extends Controller
      */
     public function update(Request $request, Sensor $sensor)
     {
-     Sensor::where('id',$id)->update([
-            'nome' => $request->input('nome'), 
+        Sensor::where('id', $id)->update([
+            'nome' => $request->input('nome'),
             'tipo' => $request->input('tipo'),
             'leitura' => $request->input('leitura'),
-            'updated_at' => Carbon::now()
+            'updated_at' => Carbon::now(),
         ]);
 
-     return redirect()
-     ->route('sensor.list')
-     ->with('success', 'Sensor configurado com sucesso');
+        return redirect()
+            ->route('sensor.list')
+            ->with('success', 'Sensor configurado com sucesso');
     }
 
     /**
