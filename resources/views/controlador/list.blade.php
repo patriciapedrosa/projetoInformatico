@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h3>Controladores
+                 <a class="btn btn-xs btn-success" style="float:right" href="{{ route('controlador.create')}}">Adicionar controlador</a>
                 
             </h3></div>
                 @if (count($controladores)) 

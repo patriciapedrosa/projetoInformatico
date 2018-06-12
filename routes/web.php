@@ -44,6 +44,8 @@ Route::post('/sensor/{sensor}/edit', 'SensorController@update')->name('sensor.up
 Route::delete('sensor/{sensor}/delete','SensorController@destroy')->name('sensor.delete');
 
 Route::get('/controladores', 'ControladorController@index')->name('controlador.list');
+Route::get('/controladores/create', 'ControladorController@create')->name('controlador.create');
+Route::post('/controladores/store', 'ControladorController@store')->name('controlador.store');
 Route::get('/controladores/{controlador}', 'ControladorController@showControlador')->name('controlador.showControlador');
 
 
@@ -51,5 +53,5 @@ Route::get('/pin/{sensor}/addPin','PinController@create')->name('pin.create');
 Route::post('/pin/storePin','PinController@store')->name('pin.store');
 
 Route::get('/rede', 'RedeController@show')->name('rede.show');
-Route::get('/rede/configurar','RedeController@create')->name('rede.create');
-Route::post('/rede/store','RedeController@store')->name('rede.store');
+Route::get('/rede/configurar','RedeController@configure')->name('rede.configure');
+Route::post('/rede/edit','RedeController@edit')->name('rede.edit');

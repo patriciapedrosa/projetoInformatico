@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateControladorsTable extends Migration
+class SensorTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateControladorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('controladors', function (Blueprint $table) {
+        Schema::create('sensor_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mac')->nullable();
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateControladorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controladors');
+        Schema::dropIfExists('sensor_types');
     }
 }
