@@ -4,8 +4,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3>Controladores
-                        <a class="btn btn-xs btn-success" style="float:right" href="{{ route('controlador.create')}}">Configurar Controladores</a>
+                    <h3>Things
+                        <a class="btn btn-xs btn-success" style="float:right" href="{{ route('controlador.create')}}">Configurar Things</a>
                     </h3>
                 </div>
                 @if (count($controladores))
@@ -31,7 +31,7 @@
                         
                         <td>
                             
-                            <a class="btn btn-info" href="{{ route('controlador.showControlador', $controlador) }}">Ver Controlador</a>
+                            <a class="btn btn-info" href="{{ route('controlador.showControlador', $controlador) }}">Ver Things</a>
 
                             <a class="btn btn-info" href="{{route('sensor.list', $controlador->id)}}">Ver sensores</a>
                             

@@ -4,7 +4,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3>Lista de MAC's não configurados
+                    <h3>Lista de things não configuradas
                     </h3>
                 </div>
                 @if (count($macs))
