@@ -42,6 +42,7 @@ Route::middleware('auth')->delete('controladores/{controlador_id}/sensores/{sens
 
 //Controladores
 Route::middleware('auth')->get('/controladores', 'ControladorController@index')->name('controlador.list');
+Route::middleware('auth')->get('/naoConfig', 'ControladorController@naoConfig')->name('controlador.listnaoConfig');
 Route::middleware('auth')->get('/controladores/create', 'ControladorController@create')->name('controlador.create');
 Route::middleware('auth')->post('/controladores/store', 'ControladorController@store')->name('controlador.store');
 Route::middleware('auth')->get('/controladores/{controlador}', 'ControladorController@showControlador')->name('controlador.showControlador');

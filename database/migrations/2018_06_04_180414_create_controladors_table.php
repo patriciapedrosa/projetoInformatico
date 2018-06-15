@@ -15,7 +15,14 @@ class CreateControladorsTable extends Migration
     {
         Schema::create('controladors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mac')->nullable();
+            $table->string('mac');
+            $table->boolean('configurado')->default('1');
+            $table->string('ip')->nullable();
+            $table->string('netmask')->nullable();
+            $table->string('gateway')->nullable();
+            $table->string('dns')->nullable();
+            $table->string('ssid')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

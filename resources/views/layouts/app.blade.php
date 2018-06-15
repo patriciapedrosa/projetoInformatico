@@ -37,8 +37,8 @@
                         @guest
                             {{-- expr --}}
                         @else
-                            <li><a class="nav-link" href="{{ route('controlador.list') }}" >Controladores</a></li>
-                            <li><a class="nav-link" href="{{route('rede.show')}}" >Rede</a></li>
+                            <li><a class="nav-link" href="{{ route('controlador.list') }}" >Controladores Configurados</a></li>
+                            <li><a class="nav-link" href="{{ route('controlador.listnaoConfig') }}" >Lista de MAC's não configurados</a></li>
                             <li><a class="nav-link" href="{{ route('acercade') }}" >Acerca De</a></li>
                             
                         @endguest

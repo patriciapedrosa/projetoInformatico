@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Rede;
+use App\Controlador;
 use Illuminate\Http\Request;
 
 class RedeControllerAPI extends Controller
 {
 
-    public function getInformation(Request $request)
+    public function getInformation(int $id)
     {
-        $rede = Rede::first();
-        return response()->json($rede);
-
+    	return new RedeResource(Controlador::find($id));
+        /*$controlador = Controlador::first();
+        return response()->json($controlador);*/
     }
 }

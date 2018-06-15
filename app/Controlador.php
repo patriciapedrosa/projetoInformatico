@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Controlador extends Model
 {
     protected $fillable = [
-        'id', 'mac', 'configurado',
+        'id', 'mac', 'configurado', 'ip','netmask','gateway','dns','ssid','password',
     ];
 
     public function sensores()

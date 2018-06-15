@@ -14,10 +14,9 @@ class CreateMacTable extends Migration
     public function up()
     {
         Schema::create('macs', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('mac_adress')->unique();
             $table->text('descricao')->nullable();
-            $table->increments('id');
-
             $table->boolean('configured');
             $table->timestamps();
         });

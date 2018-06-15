@@ -23,6 +23,14 @@ class ControladorController extends Controller
         return view('controlador.list', compact('controladores'));
     }
 
+    public function naoConfig()
+    {
+
+        $macs = MAC::orderBy('id')->where('configured','0')->paginate(10);
+
+        return view('controlador.listNaoConfig', compact('macs'));
+    }
+
     public function create(Request $request)
     {
         $controlador = new Controlador();
@@ -88,4 +96,38 @@ class ControladorController extends Controller
             ->with('success', 'Controlador configurado com sucesso');
     }
 
+    public function show()
+    {
+        $rede = Rede::all()->first();
+        if ($rede == null) {
+            $rede = new Rede();
+        }
+        return view('rede.view_rede', compact('rede'));
+    }
+
+    public function configure()
+    {
+        $rede = Rede::all()->first();
+        if ($rede == null) {
+            $rede = new Rede();
+        }
+
+        return view('rede.configure', compact('rede'));
+    }
+
+   /* public function edit(Request $request)
+    {
+        $rede = Rede::all()->first();
+        if ($rede == null) {
+            $rede = new Rede();
+        }
+
+        $rede->fill($request->all());
+        $rede->created_at = Carbon::now();
+        $rede->save();
+
+        return redirect()
+            ->route('rede.show', compact('rede'));
+    }
+*/
 }

@@ -18,4 +18,6 @@ class MacControllerAPI extends Controller
         }
         return response()->json(['message' => 'sucesso'], 200);
     }
+
+
 }

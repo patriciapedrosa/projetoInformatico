@@ -31,7 +31,7 @@
                             {{$sensor->tipo}}
                         </td>
                         <td>
-                            {{$sensor->leitura}}
+                            {{$sensor->tipo_leitura}}
                         </td>
                         <td>
                             <a class="btn btn-info" href="{{route('sensor.show', [$controlador->id,$sensor->id])}}">Ver</a>
