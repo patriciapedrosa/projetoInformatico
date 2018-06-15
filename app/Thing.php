@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Controlador extends Model
+class Thing extends Model
 {
     protected $fillable = [
         'id', 'mac', 'configurado', 'ip','netmask','gateway','dns','ssid','password',

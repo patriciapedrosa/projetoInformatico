@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Controlador;
+use App\Thing;
 use App\Mac;
 use App\Sensor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ControladorController extends Controller
+class ThingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Sensor $sensors, Controlador $controlador)
+    public function index(Sensor $sensors, Thing $thing)
     {
 
-        $controladores = Controlador::orderBy('id')->paginate(10);
+        $things = Thing::orderBy('id')->paginate(10);
 
-        return view('controlador.list', compact('controladores'));
+        return view('thing.list', compact('things'));
     }
 
     public function naoConfig()
@@ -28,72 +28,72 @@ class ControladorController extends Controller
 
         $macs = MAC::orderBy('id')->where('configured','0')->paginate(10);
 
-        return view('controlador.listNaoConfig', compact('macs'));
+        return view('thing.listNaoConfig', compact('macs'));
     }
 
     public function create(Request $request)
     {
-        $controlador = new Controlador();
+        $thing = new Thing();
         $macs = Mac::where('configured', '=', 0)->get();
-        return view('controlador.add', compact('controlador', 'macs'));
+        return view('thing.add', compact('thing', 'macs'));
     }
     public function store(Request $request)
     {
-        $controlador = new Controlador();
-        $controlador->fill($request->all());
+        $thing = new Thing();
+        $thing->fill($request->all());
 
         $mac = Mac::where('mac_adress', '=', $request->mac)->first();
         if ($mac == null || $mac->configured) {
             return redirect()
-                ->route('controlador.create');
+                ->route('thing.create');
         }
         $mac->markAsConfigured();
-        $controlador->created_at = Carbon::now();
-        $controlador->save();
+        $thing->created_at = Carbon::now();
+        $thing->save();
 
         return redirect()
-            ->route('controlador.list');
+            ->route('thing.list');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Controlador  $controlador
+     * @param  \App\Thing  $Thing
      * @return \Illuminate\Http\Response
      */
-    public function showControlador(Controlador $controlador)
+    public function showThing(Thing $thing)
     {
-        return view('controlador.view_controlador', compact('controlador'));
+        return view('thing.view_thing', compact('thing'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Controlador  $controlador
+     * @param  \App\Thing  $Thing
      * @return \Illuminate\Http\Response
      */
-    public function edit(Controlador $controlador)
+    public function edit(Thing $thing)
     {
-        return view('controlador.edit', compact('controlador'));
+        return view('thing.edit', compact('thing'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Controlador  $controlador
+     * @param  \App\Thing  $Thing
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Controlador $controlador, $id)
+    public function update(Request $request, Thing $thing, $id)
     {
-        Controlador::where('id', $id)->update([
+        Thing::where('id', $id)->update([
 
             'updated_at' => Carbon::now(),
         ]);
 
         return redirect()
-            ->route('controlador.list')
-            ->with('success', 'Controlador configurado com sucesso');
+            ->route('thing.list')
+            ->with('success', 'Thing configurado com sucesso');
     }
 
     public function show()

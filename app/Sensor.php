@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sensor extends Model
 {
 	protected $fillable = [
-       'nome', 'tipo', 'leitura', 'tipo_leitura','controlador_id'
+       'nome', 'tipo', 'leitura', 'tipo_leitura','thing_id'
     ];
     
 
@@ -18,7 +18,7 @@ class Sensor extends Model
 
     public function controlador()
     {
-        return $this->belongsTo(\App\Controlador::class, 'controlador_id','id');
+        return $this->belongsTo(\App\Thing::class, 'thing_id','id');
     }
 
 }

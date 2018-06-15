@@ -5,10 +5,10 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Things
-                        <a class="btn btn-xs btn-success" style="float:right" href="{{ route('controlador.create')}}">Configurar Things</a>
+                        <a class="btn btn-xs btn-success" style="float:right" href="{{ route('thing.create')}}">Configurar Things</a>
                     </h3>
                 </div>
-                @if (count($controladores))
+                @if (count($things))
                 <table class="table table-striped">
 
                     <thead>
@@ -18,22 +18,22 @@
                             <th>Açoes</th>
                         </tr>
                     </thead>
-                    @foreach ($controladores as $controlador)
+                    @foreach ($things as $thing)
                     <tr>
 
                         <td>
-                            {{$controlador->mac}}
+                            {{$thing->mac}}
                         </td>
 
                         <td>
-                            {{$controlador->ConfiguradoToStr()}}
+                            {{$thing->ConfiguradoToStr()}}
                         </td>
                         
                         <td>
                             
-                            <a class="btn btn-info" href="{{ route('controlador.showControlador', $controlador) }}">Ver Things</a>
+                            <a class="btn btn-info" href="{{ route('thing.showthing', $thing) }}">Ver Things</a>
 
-                            <a class="btn btn-info" href="{{route('sensor.list', $controlador->id)}}">Ver sensores</a>
+                            <a class="btn btn-info" href="{{route('sensor.list', $thing->id)}}">Ver sensores</a>
                             
 
                         </td>
@@ -45,10 +45,10 @@
                 </table>
                 @else
 
-                <h2>Não foram encontrados controladores</h2>
+                <h2>Não foram encontrados things</h2>
                 @endif
                 <div class="row justify-content-center">
-                    <div class="pagination" align="middle"> {{$controladores->links()}}</div>
+                    <div class="pagination" align="middle"> {{$things->links()}}</div>
                 </div>
             </div>
         </div>

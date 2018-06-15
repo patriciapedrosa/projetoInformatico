@@ -20,7 +20,7 @@ class CreateSensorsTable extends Migration
 
             $table->string('tipo');
             $table->string('leitura')->nullable();
-            $table->integer('controlador_id');
+            $table->integer('thing_id');
 
             $table->timestamps();
         });

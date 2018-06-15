@@ -8,7 +8,7 @@
                     </h3>
                 </div>
                 <div class="container">
-                    <form action="{{route('pin.store', [$sensor->controlador_id, $sensor->id])}}" method="post" class="form-group" enctype="multipart/form-data">
+                    <form action="{{route('pin.store', [$sensor->thing_id, $sensor->id])}}" method="post" class="form-group" enctype="multipart/form-data">
 
 
                         <div class="form-group">
@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" id="ok" name="ok">Save</button>
-                            <a class="btn btn-default" href="{{ route('sensor.show', [$sensor->controlador_id, $sensor->id]) }}" id="cancel">Cancel</a>
+                            <a class="btn btn-default" href="{{ route('sensor.show', [$sensor->thing_id, $sensor->id]) }}" id="cancel">Cancel</a>
                         </div>
                         {{csrf_field()}}
                     </form>

@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <h3>Sensores
 
-                        <a class="btn btn-xs btn-success" style="float:right" href="{{ route('sensor.create', $controlador->id)}}">Adicionar Sensor</a>
+                        <a class="btn btn-xs btn-success" style="float:right" href="{{ route('sensor.create', $thing->id)}}">Adicionar Sensor</a>
                     </h3>
                 </div>
 
@@ -34,9 +34,9 @@
                             {{$sensor->tipo_leitura}}
                         </td>
                         <td>
-                            <a class="btn btn-info" href="{{route('sensor.show', [$controlador->id,$sensor->id])}}">Ver</a>
-                            <a class="btn btn-warning" href="{{route('sensor.edit', [$controlador->id,$sensor->id])}}">Editar</a>
-                            <form action="{{ route('sensor.delete', [$controlador->id,$sensor]) }}" method="POST" accept-charset="utf-8">
+                            <a class="btn btn-info" href="{{route('sensor.show', [$thing->id,$sensor->id])}}">Ver</a>
+                            <a class="btn btn-warning" href="{{route('sensor.edit', [$thing->id,$sensor->id])}}">Editar</a>
+                            <form action="{{ route('sensor.delete', [$thing->id,$sensor]) }}" method="POST" accept-charset="utf-8">
                                 {{method_field('delete')}} {{csrf_field()}}
                                 <button type="submit" class="btn btn-xs btn-danger">Remover</button>
                             </form>

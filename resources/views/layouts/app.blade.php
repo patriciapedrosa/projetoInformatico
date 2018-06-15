@@ -37,8 +37,8 @@
                         @guest
                             {{-- expr --}}
                         @else
-                            <li><a class="nav-link" href="{{ route('controlador.list') }}" >Things Configuradas</a></li>
-                            <li><a class="nav-link" href="{{ route('controlador.listnaoConfig') }}" >Things Detetadas</a></li>
+                            <li><a class="nav-link" href="{{ route('thing.list') }}" >Things Configuradas</a></li>
+                            <li><a class="nav-link" href="{{ route('thing.listnaoConfig') }}" >Things Detetadas</a></li>
                             <li><a class="nav-link" href="{{ route('acercade') }}" >Acerca De</a></li>
                             
                         @endguest

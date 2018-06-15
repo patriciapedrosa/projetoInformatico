@@ -15,7 +15,7 @@
 //     return $request->user();
 // });
 
-Route::post('/controladores', 'ControladorController@create');
+Route::post('/things', 'ThingController@create');
 Route::post('/loginControladorManager', 'LoginControllerAPI@loginControladorManager');
 
 Route::middleware('auth:api')->post('/registerMac', 'MacControllerAPI@add');

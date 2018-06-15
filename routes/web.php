@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('/controladores');
+        return redirect('/things');
     } else {
         return view('auth.login');
     }
@@ -32,24 +32,24 @@ Route::middleware('auth')->get('/acercaDe', 'HomeController@acercaDe')->name('ac
 //add
 
 //Sensores
-Route::middleware('auth')->get('controladores/{controlador_id}/sensores/create', 'SensorController@create')->name('sensor.create');
-Route::middleware('auth')->post('controladores/{controlador_id}/sensores/create', 'SensorController@store')->name('sensor.store');
-Route::middleware('auth')->get('controladores/{controlador_id}/sensores/', 'SensorController@index')->name('sensor.list');
-Route::middleware('auth')->get('/controladores/{controlador_id}/sensores/{sensor_id}', 'SensorController@showSensor')->name('sensor.show');
-Route::middleware('auth')->get('/controladores/{controlador_id}/sensor/{sensor_id}/edit', 'SensorController@edit')->name('sensor.edit');
-Route::middleware('auth')->post('/controladores/{controlador_id}/sensor/{sensor_id}/edit', 'SensorController@update')->name('sensor.update');
-Route::middleware('auth')->delete('controladores/{controlador_id}/sensores/{sensor}/delete', 'SensorController@destroy')->name('sensor.delete');
+Route::middleware('auth')->get('things/{thing_id}/sensores/create', 'SensorController@create')->name('sensor.create');
+Route::middleware('auth')->post('things/{thing_id}/sensores/create', 'SensorController@store')->name('sensor.store');
+Route::middleware('auth')->get('things/{thing_id}/sensores/', 'SensorController@index')->name('sensor.list');
+Route::middleware('auth')->get('/things/{thing_id}/sensores/{sensor_id}', 'SensorController@showSensor')->name('sensor.show');
+Route::middleware('auth')->get('/things/{thing_id}/sensor/{sensor_id}/edit', 'SensorController@edit')->name('sensor.edit');
+Route::middleware('auth')->post('/things/{thing_id}/sensor/{sensor_id}/edit', 'SensorController@update')->name('sensor.update');
+Route::middleware('auth')->delete('things/{thing_id}/sensores/{sensor}/delete', 'SensorController@destroy')->name('sensor.delete');
 
-//Controladores
-Route::middleware('auth')->get('/controladores', 'ControladorController@index')->name('controlador.list');
-Route::middleware('auth')->get('/naoConfig', 'ControladorController@naoConfig')->name('controlador.listnaoConfig');
-Route::middleware('auth')->get('/controladores/create', 'ControladorController@create')->name('controlador.create');
-Route::middleware('auth')->post('/controladores/store', 'ControladorController@store')->name('controlador.store');
-Route::middleware('auth')->get('/controladores/{controlador}', 'ControladorController@showControlador')->name('controlador.showControlador');
+//things
+Route::middleware('auth')->get('/things', 'ThingController@index')->name('thing.list');
+Route::middleware('auth')->get('/naoConfig', 'ThingController@naoConfig')->name('thing.listnaoConfig');
+Route::middleware('auth')->get('/things/create', 'ThingController@create')->name('thing.create');
+Route::middleware('auth')->post('/things/store', 'ThingController@store')->name('thing.store');
+Route::middleware('auth')->get('/things/{thing}', 'ThingController@showthing')->name('thing.showthing');
 
 //Pins
-Route::middleware('auth')->get('/controladores/{controlador_id}/sensores/{sensor_id}/pins/create', 'PinController@create')->name('pin.create');
-Route::middleware('auth')->post('/controladores/{controlador_id}/sensores/{sensor_id}/pins/create', 'PinController@store')->name('pin.store');
+Route::middleware('auth')->get('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@create')->name('pin.create');
+Route::middleware('auth')->post('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@store')->name('pin.store');
 
 Route::middleware('auth')->get('/rede', 'RedeController@show')->name('rede.show');
 Route::middleware('auth')->get('/rede/configurar', 'RedeController@configure')->name('rede.configure');

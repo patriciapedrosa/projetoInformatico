@@ -26,7 +26,7 @@ class PinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($controlador_id, $sensor_id)
+    public function create($thing_id, $sensor_id)
     {
         $sensor = Sensor::findOrFail($sensor_id);
         $pin = new Pin();
@@ -39,7 +39,7 @@ class PinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $controlador_id, $sensor_id)
+    public function store(Request $request, $thing_id, $sensor_id)
     {
         $sensor = Sensor::findOrFail($sensor_id);
         $pin = new Pin();
@@ -49,7 +49,7 @@ class PinController extends Controller
         $pin->save();
 
         return redirect()
-            ->route('sensor.show', compact('controlador_id', 'sensor_id'));
+            ->route('sensor.show', compact('thing_id', 'sensor_id'));
     }
 
     /**

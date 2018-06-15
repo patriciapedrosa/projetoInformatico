@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateControladorsTable extends Migration
+class CreateThingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateControladorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('controladors', function (Blueprint $table) {
+        Schema::create('things', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mac');
             $table->boolean('configurado')->default('1');
@@ -34,6 +34,6 @@ class CreateControladorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controladors');
+        Schema::dropIfExists('things');
     }
 }
