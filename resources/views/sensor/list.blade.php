@@ -1,7 +1,8 @@
 @extends('layouts.app') @section('content')
+<main class="main">
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="card-body">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
                     <h3>Sensores
@@ -58,4 +59,5 @@
     </div>
 
 </div>
+</main>
 @endsection

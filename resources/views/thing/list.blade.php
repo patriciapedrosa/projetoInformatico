@@ -1,10 +1,12 @@
 @extends('layouts.app') @section('content')
+
+<main class="main">
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="card-body">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <h3>Things
+                    <h3><img src="{{ asset('img/iot3.png')}}" height="40" width="40"></img> Things
                         <a class="btn btn-xs btn-success" style="float:right" href="{{ route('thing.create')}}">Configurar Things</a>
                     </h3>
                 </div>
@@ -30,7 +32,6 @@
                         </td>
                         
                         <td>
-                            
                             <a class="btn btn-info" href="{{ route('thing.showthing', $thing) }}">Ver Things</a>
 
                             <a class="btn btn-info" href="{{route('sensor.list', $thing->id)}}">Ver sensores</a>
@@ -44,8 +45,10 @@
 
                 </table>
                 @else
+                <div class="card-body">
 
                 <h2>Não foram encontrados things</h2>
+            </div>
                 @endif
                 <div class="row justify-content-center">
                     <div class="pagination" align="middle"> {{$things->links()}}</div>
@@ -54,4 +57,5 @@
         </div>
     </div>
 </div>
+</main>
 @endsection
