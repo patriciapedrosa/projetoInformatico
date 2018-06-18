@@ -29,6 +29,7 @@ Route::get('/', function () {
     }
 });
 
+
 Route::middleware('auth')->get('/acercaDe', 'HomeController@acercaDe')->name('acercade');
 
 //add
