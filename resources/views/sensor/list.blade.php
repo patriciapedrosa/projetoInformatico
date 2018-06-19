@@ -48,7 +48,9 @@
 
                 </table>
                 @else
+                <div class="card-body">
                 <h2>Não foram encontrados sensores</h2>
+            </div>
                 @endif
                 <div class="row justify-content-center">
                     <div class="pagination" align="middle"> {{$sensors->links()}}</div>

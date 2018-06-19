@@ -23,73 +23,81 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-     <header class="app-header navbar">
+   <header class="app-header navbar">
+    <ul class="nav navbar-nav">
 
       <a class="navbar-brand" href="{{ url('/') }}">
 
-                    <img src="{{ asset('img/iotLogo.png')}}" height="50" width="50"></img>
-                </a>
-               
-                    <ul class="nav navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li  class="nav-item px-3"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li class="nav-item px-3"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @else
-                        <div class="nav-item px-3">
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-user"></i>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+        <img src="{{ asset('img/iotLogo.png')}}" height="50" width="50"></img>
+    </a>       
+</ul>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                     <i class="fas fa-lock"></i>
-                                        {{ __('Logout') }}
-                                    </a>
+<div class="nav-item px-3">
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        </div>
-                        @endguest
-                    </ul>
+    <ul class="nav navbar-nav ml-auto">
+        <!-- Authentication Links -->
+        @guest
+        <li  class="nav-item px-3"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+        <li class="nav-item px-3"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+        @else
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fas fa-user"></i>
+                {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
 
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                <i class="fas fa-lock"></i>
+                {{ __('Logout') }}
+            </a>
 
-
-    </header>
-    @guest
-                            {{-- expr --}}
-    @else
-    <div class="app-body">
-      <div class="sidebar">
-        <nav class="sidebar-nav">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('thing.list') }}" >
-                <img src="{{ asset('img/iot5.png')}}" height="30" width="30"></img>
-              Things Configuradas</a>
-            </li>
-
-             <li class="nav-item"><a class="nav-link" href="{{ route('thing.listnaoConfig') }}" >
-             <img src="{{ asset('img/iot5.png')}}" height="30" width="30"></img>
-         Things Detetadas</a></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href=" {{ route('acercade') }} " >
-                            <i class="fas fa-info-circle" style="font-size:25px;"></i> Acerca De</a></li>
-        </ul>
-    </nav>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
+    </li>
 </div>
-
-
 @endguest
+</ul>
+</header>
+@guest
+{{-- expr --}}
+@else
+
+
+<div class="app-body">
+  <div class="sidebar ">
+    <a class="nav-item">
+      <a class="nav-link" href="{{ route('thing.list') }}" >
+        <img src="{{ asset('img/iot5.png')}}" height="30" width="30"></img>
+    Things Configuradas</a>
+</a>
+
+<a class="nav-item">    <a class="nav-link" href="{{ route('thing.listnaoConfig') }}" >
+   <img src="{{ asset('img/iot5.png')}}" height="30" width="30"></img>
+Things Detetadas</a></a>
+<a class="nav-item">
+    <a class="nav-link" href=" {{ route('acercade') }} " >
+        <i class="fas fa-info-circle" style="font-size:25px;"></i> Acerca De</a></a>
+        <div class="app-body">
+            <div class="app-body">
+                <div class="app-body">
+                    <div class="app-body"> <img src="{{ asset('img/iotLogo.png')}}" height="200" width="200"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         
-            @yield('content')
+    </div>
+
+
+    @endguest
+
+
+    @yield('content')
 </div>
 </body>
 </html>

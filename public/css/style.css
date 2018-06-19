@@ -9129,6 +9129,11 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
 .aside-menu {
   z-index: 1019;
   width: 250px;
@@ -11483,16 +11488,14 @@ canvas {
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
 }
-
 .sidebar {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  display: block;
   padding: 0;
+  position:fixed;
   color: #fff;
   background: #2f353a;
-}
+ }
+
 
 .sidebar .sidebar-close {
   position: absolute;
@@ -13418,7 +13421,7 @@ html[dir="rtl"] .aside-menu-show .aside-menu {
     z-index: 1020;
     width: 100%;
     text-align: center;
-    background-color: #fff;
+    background-color: #23282c;
   }
   .app-header .navbar-toggler {
     color: #fff;
