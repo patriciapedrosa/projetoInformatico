@@ -35,7 +35,12 @@
                             <a class="btn btn-info" href="{{ route('thing.showthing', $thing) }}">Ver Things</a>
 
                             <a class="btn btn-info" href="{{route('sensor.list', $thing->id)}}">Ver sensores</a>
-                            
+
+                            <a><form action="{{ route('thing.delete',$thing) }}" method="POST" accept-charset="utf-8">
+                                {{method_field('delete')}}
+                                {{csrf_field()}}
+                                <button type="submit" class="btn btn-xs btn-danger">Remover</button>
+                            </form> </a>
 
                         </td>
                         

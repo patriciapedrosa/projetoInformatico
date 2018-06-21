@@ -13,4 +13,6 @@ class RedeControllerAPI extends Controller
     {
     	return new RedeResource(Thing::find($id));
     }
+
+    
 }

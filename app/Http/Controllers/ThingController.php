@@ -66,68 +66,20 @@ class ThingController extends Controller
         return view('thing.view_thing', compact('thing'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Thing  $Thing
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Thing $thing)
-    {
-        return view('thing.edit', compact('thing'));
-    }
+    public function destroy($thing_id)
+    {  
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Thing  $Thing
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Thing $thing, $id)
-    {
-        Thing::where('id', $id)->update([
-
-            'updated_at' => Carbon::now(),
-        ]);
-
+        $thing = Thing::findOrFail($thing_id);
+        $thing->delete();
+        $mac = Mac::where('mac_adress',$thing->mac);
+        $mac->delete();
+        
         return redirect()
-            ->route('thing.list')
-            ->with('success', 'Thing configurado com sucesso');
+        ->route('thing.list')
+        ->with('success', 'Thing deleted successfully');
     }
 
-    public function show()
-    {
-        $rede = Rede::all()->first();
-        if ($rede == null) {
-            $rede = new Rede();
-        }
-        return view('rede.view_rede', compact('rede'));
-    }
 
-    public function configure()
-    {
-        $rede = Rede::all()->first();
-        if ($rede == null) {
-            $rede = new Rede();
-        }
 
-        return view('rede.configure', compact('rede'));
-    }
 
-   /* public function edit(Request $request)
-    {
-        $rede = Rede::all()->first();
-        if ($rede == null) {
-            $rede = new Rede();
-        }
-
-        $rede->fill($request->all());
-        $rede->created_at = Carbon::now();
-        $rede->save();
-
-        return redirect()
-            ->route('rede.show', compact('rede'));
-    }
-*/
 }

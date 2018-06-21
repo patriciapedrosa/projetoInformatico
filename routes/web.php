@@ -49,7 +49,7 @@ Route::middleware('auth')->get('/naoConfig', 'ThingController@naoConfig')->name(
 Route::middleware('auth')->get('/things/create', 'ThingController@create')->name('thing.create');
 Route::middleware('auth')->post('/things/store', 'ThingController@store')->name('thing.store');
 Route::middleware('auth')->get('/things/{thing}', 'ThingController@showthing')->name('thing.showthing');
-
+Route::middleware('auth')->delete('things/{thing_id}/delete', 'ThingController@destroy')->name('thing.delete');
 //Pins
 Route::middleware('auth')->get('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@create')->name('pin.create');
 Route::middleware('auth')->post('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@store')->name('pin.store');
