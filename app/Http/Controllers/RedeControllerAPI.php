@@ -9,10 +9,10 @@ use App\Http\Resources\RedeResource;
 class RedeControllerAPI extends Controller
 {
 
-    public function getInformation(int $id)
+    public function getInformation(string $mac_address)
     {
-    	return new RedeResource(Thing::find($id));
+        $thing = Thing::where('mac', $mac_address)->first();
+        return new RedeResource($thing);
     }
-
-    
 }
+
