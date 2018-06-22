@@ -79,6 +79,29 @@ class ThingController extends Controller
         ->with('success', 'Thing deleted successfully');
     }
 
+    public function edit(Thing $thing)
+    {
+        return view('thing.edit',compact('thing'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        
+        Thing::where('id',$id)->update([
+            'ip' => $request->input('ip'), 
+            'netmask' => $request->input('netmask'), 
+            'gateway' => $request->input('gateway'), 
+            'dns' => $request->input('dns'), 
+            'ssid' => $request->input('ssid'), 
+            'password' => $request->input('password'), 
+            'updated_at' => Carbon::now()
+        ]);
+
+        return redirect()
+        ->route('thing.list')
+        ->with('success', 'Thing editada com sucesso');
+    }
+
 
 
 

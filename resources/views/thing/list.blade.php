@@ -17,7 +17,7 @@
                         <tr>
                             <th>MAC</th>
                             <th>Configurado</th>
-                            <th>Açoes</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     @foreach ($things as $thing)
@@ -32,17 +32,23 @@
                         </td>
                         
                         <td>
-                            <a class="btn btn-info" href="{{ route('thing.showthing', $thing) }}">Ver Things</a>
+                            <a class="btn btn-info" href="{{ route('thing.showthing', $thing) }}">Ver Thing</a>
 
-                            <a class="btn btn-info" href="{{route('sensor.list', $thing->id)}}">Ver sensores</a>
-
+                            <a class="btn btn-info" href="{{route('sensor.list', $thing->id)}}">Ver Sensores</a>
+                        
+                            <a class="btn btn-success" href="{{ route('thing.edit',$thing->id) }}">Editar</a>
+                        
                             <a><form action="{{ route('thing.delete',$thing) }}" method="POST" accept-charset="utf-8">
                                 {{method_field('delete')}}
                                 {{csrf_field()}}
                                 <button type="submit" class="btn btn-xs btn-danger">Remover</button>
                             </form> </a>
+                        
+                            
 
-                        </td>
+
+                        
+                            </td>
                         
 
                     </tr>

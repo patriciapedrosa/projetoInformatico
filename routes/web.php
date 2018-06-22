@@ -50,6 +50,8 @@ Route::middleware('auth')->get('/things/create', 'ThingController@create')->name
 Route::middleware('auth')->post('/things/store', 'ThingController@store')->name('thing.store');
 Route::middleware('auth')->get('/things/{thing}', 'ThingController@showthing')->name('thing.showthing');
 Route::middleware('auth')->delete('things/{thing_id}/delete', 'ThingController@destroy')->name('thing.delete');
+Route::middleware('auth')->get('/thing/{thing}/edit','ThingController@edit')->name('thing.edit');//funcional
+Route::middleware('auth')->post('/thing/{thing}/update', 'ThingController@update')->name('thing.update');
 //Pins
 Route::middleware('auth')->get('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@create')->name('pin.create');
 Route::middleware('auth')->post('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@store')->name('pin.store');
