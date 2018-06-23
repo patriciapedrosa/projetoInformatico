@@ -108,7 +108,7 @@ class ThingController extends Controller
 
         $thing = Thing::where('mac', $mac_address)->first();
         $date = Carbon::parse($thing->configDate)->format('YmdHis');
-        return $date;
+        return response()->json(['configDate'=>$date]);
     }
 
 
