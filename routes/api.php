@@ -28,7 +28,7 @@ Route::get('/networkConfiguration/{id}', 'RedeControllerAPI@getInformation'); //
 
 Route::get('/getsensores/{id}', 'SensorController@getSensores');
 
-Route::get('/getdataThing/{id}', 'ThingController@getData');
+Route::get('/getThingConfigData/{id}', 'ThingController@getData');
 Route::get('/getdataSensor/{id}', 'SensorController@getData');
 
 

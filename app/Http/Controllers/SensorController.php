@@ -125,14 +125,14 @@ class SensorController extends Controller
         
     }
 
-    /*public function getData(string $mac_address)
+    public function getData(string $mac_address)
     {
         $thing = Thing::where('mac', $mac_address)->first();
         $sensor = Sensor::where('thing_id', $thing->id)->get();
-        dd($sensor->id);
+        dd($thing->id);
         //$date = Carbon::parse($sensor->configDate)->format('YmdHis');
         return $date;
-    }*/
+    }
 
 
 
