@@ -23,6 +23,7 @@ class CreateThingsTable extends Migration
             $table->string('dns')->nullable();
             $table->string('ssid')->nullable();
             $table->string('password')->nullable();
+            $table->timestamp("configDate");
             $table->timestamps();
         });
     }

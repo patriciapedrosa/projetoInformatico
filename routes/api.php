@@ -26,6 +26,10 @@ Route::post('/loginControladorManager', 'LoginControllerAPI@loginControladorMana
 Route::post('/registerMac', 'MacControllerAPI@add'); //funciona
 Route::get('/networkConfiguration/{id}', 'RedeControllerAPI@getInformation'); //funciona
 
+Route::get('/getsensores/{id}', 'SensorController@getSensores');
+
+Route::get('/getdataThing/{id}', 'ThingController@getData');
+Route::get('/getdataSensor/{id}', 'SensorController@getData');
 
 
 

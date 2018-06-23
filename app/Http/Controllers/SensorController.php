@@ -8,6 +8,7 @@ use App\Sensor;
 use App\SensorType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Resources\SensorResource;
 
 class SensorController extends Controller
 {
@@ -41,8 +42,7 @@ class SensorController extends Controller
     {
         $thing = Thing::findOrFail($thing_id);
         $sensor = new Sensor();
-        $sensor_types = SensorType::all();
-        return view('sensor.add', compact('sensor', 'thing', 'sensor_types'));
+        return view('sensor.add', compact('sensor', 'thing'));
     }
 
     /**
@@ -55,7 +55,7 @@ class SensorController extends Controller
     {
         $sensor = new Sensor();
         $sensor->fill($request->all());
-        $sensor->created_at = Carbon::now();
+        $sensor->configDate = Carbon::now();
         $thing = Thing::findOrFail($thing_id);
         $sensor->thing_id = $thing->id;
         $sensor->save();
@@ -73,8 +73,8 @@ class SensorController extends Controller
     public function edit($thing_id, $sensor_id)
     {
         $sensor = Sensor::findOrFail($sensor_id);
-        $sensor_types = SensorType::all();
-        return view('sensor.edit', compact('sensor', 'sensor_types'));
+        //$sensor_types = SensorType::all();
+        return view('sensor.edit', compact('sensor'));
     }
 
     /**
@@ -89,8 +89,10 @@ class SensorController extends Controller
         Sensor::findOrFail($sensor_id)->update([
             'nome' => $request->input('nome'),
             'tipo' => $request->input('tipo'),
-            'tipo_leitura' => $request->input('tipo_leitura'),
-            'updated_at' => Carbon::now(),
+            'grandeza' => $request->input('grandeza'),
+            'inativo' => $request->input('inativo'),
+            'pin' => $request->input('pin'),
+            'configDate' => Carbon::now(),
         ]);
 
         return redirect()
@@ -112,4 +114,27 @@ class SensorController extends Controller
             ->route('sensor.list', compact('thing_id'))
             ->with('success', 'Sensor apagado com sucesso');
     }
+
+
+    public function getSensores(string $mac){
+        
+        $thing = Thing::where('mac', $mac)->first();
+        $sensor = Sensor::where('thing_id', $thing->id)->get();
+
+        return SensorResource::collection($sensor);   
+        
+    }
+
+    /*public function getData(string $mac_address)
+    {
+        $thing = Thing::where('mac', $mac_address)->first();
+        $sensor = Sensor::where('thing_id', $thing->id)->get();
+        dd($sensor->id);
+        //$date = Carbon::parse($sensor->configDate)->format('YmdHis');
+        return $date;
+    }*/
+
+
+
+
 }

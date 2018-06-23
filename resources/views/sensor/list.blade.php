@@ -18,7 +18,9 @@
                         <tr>
                             <th>Nome</th>
                             <th>Tipo</th>
-                            <th>Leitura</th>
+                            <th>Grandeza</th>
+                            <th>Inativo</th>
+                            <th>pin</th>
                             <th>Acoes</th>
                         </tr>
                     </thead>
@@ -29,11 +31,13 @@
                             {{$sensor->nome}}
                         </td>
                         <td>
-                            {{$sensor->tipo}}
+                            {{$sensor->tipoToStr()}}
                         </td>
                         <td>
-                            {{$sensor->tipo_leitura}}
+                            {{$sensor->grandeza}}
                         </td>
+                        <td>{{$sensor->inativoToStr()}}</td>
+                        <td>{{$sensor->pin}}</td>
                         <td>
                             <a class="btn btn-info" href="{{route('sensor.show', [$thing->id,$sensor->id])}}">Ver</a>
                             <a class="btn btn-warning" href="{{route('sensor.edit', [$thing->id,$sensor->id])}}">Editar</a>

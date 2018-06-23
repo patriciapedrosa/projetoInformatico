@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Thing extends Model
 {
     protected $fillable = [
-        'id', 'mac', 'configurado', 'ip','netmask','gateway','dns','ssid','password',
+        'id', 'mac', 'configurado', 'ip','netmask','gateway','dns','ssid','password', 'configDate'
     ];
 
     public function sensores()
@@ -35,5 +35,6 @@ class Thing extends Model
     {
         return $this->configurado == 0;
     }
+
 
 }

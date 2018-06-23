@@ -16,12 +16,12 @@ class CreateSensorsTable extends Migration
         Schema::create('sensors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('tipo_leitura');
-
-            $table->string('tipo');
-            $table->string('leitura')->nullable();
+            $table->boolean('tipo');
+            $table->string('grandeza');
+            $table->boolean('inativo');
+            $table->integer('pin');
             $table->integer('thing_id');
-
+            $table->timestamp("configDate");
             $table->timestamps();
         });
     }

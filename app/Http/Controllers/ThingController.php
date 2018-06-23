@@ -8,6 +8,7 @@ use App\Sensor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+
 class ThingController extends Controller
 {
     /**
@@ -45,14 +46,14 @@ class ThingController extends Controller
         $mac = Mac::where('mac_adress', '=', $request->mac)->first();
         if ($mac == null || $mac->configured) {
             return redirect()
-                ->route('thing.create');
+            ->route('thing.create');
         }
         $mac->markAsConfigured();
-        $thing->created_at = Carbon::now();
+        $thing->configDate = Carbon::now();
         $thing->save();
 
         return redirect()
-            ->route('thing.list');
+        ->route('thing.list');
     }
 
     /**
@@ -86,7 +87,7 @@ class ThingController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
         Thing::where('id',$id)->update([
             'ip' => $request->input('ip'), 
             'netmask' => $request->input('netmask'), 
@@ -94,12 +95,20 @@ class ThingController extends Controller
             'dns' => $request->input('dns'), 
             'ssid' => $request->input('ssid'), 
             'password' => $request->input('password'), 
-            'updated_at' => Carbon::now()
+            'configDate' => Carbon::now()
         ]);
 
         return redirect()
         ->route('thing.list')
         ->with('success', 'Thing editada com sucesso');
+    }
+
+    public function getData(string $mac_address)
+    {
+
+        $thing = Thing::where('mac', $mac_address)->first();
+        $date = Carbon::parse($thing->configDate)->format('YmdHis');
+        return $date;
     }
 
 
