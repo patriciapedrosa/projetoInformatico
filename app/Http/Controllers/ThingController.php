@@ -54,6 +54,7 @@ class ThingController extends Controller
 
         return redirect()
         ->route('thing.list');
+        ->with('success', 'Thing adicionada com sucesso');
     }
 
     /**
@@ -77,7 +78,7 @@ class ThingController extends Controller
         
         return redirect()
         ->route('thing.list')
-        ->with('success', 'Thing deleted successfully');
+        ->with('success', 'Thing eliminada com sucesso');
     }
 
     public function edit(Thing $thing)

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class RedeResource extends JsonResource
 {
@@ -21,7 +22,7 @@ class RedeResource extends JsonResource
             'dns' => $this->dns,
             'ssid' => $this->ssid,
             'password' => $this->password,
-            'configDate' => $this->configDate,
+            'configDate' => Carbon::parse($this->configDate)->format('YmdHis'),
         ];
     }
 }

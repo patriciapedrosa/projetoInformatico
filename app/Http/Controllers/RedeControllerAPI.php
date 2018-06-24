@@ -11,6 +11,7 @@ class RedeControllerAPI extends Controller
 
     public function getInformation(string $mac_address)
     {
+
         $thing = Thing::where('mac', $mac_address)->first();
         return new RedeResource($thing);
     }
