@@ -128,10 +128,22 @@ class SensorController extends Controller
     public function getData(string $mac_address)
     {
         $thing = Thing::where('mac', $mac_address)->first();
-        $sensor = Sensor::where('thing_id', $thing->id)->get();
-        dd($thing->id);
-        //$date = Carbon::parse($sensor->configDate)->format('YmdHis');
-        return $date;
+        $sensor = Sensor::select('configDate')->where('thing_id', $thing->id)->get();
+
+       
+
+        
+        //$sen = Sensor::where('thing_id', $thing->id)->value('configDate');
+
+        foreach ($sensor as $sen) {
+            //dd($sen);
+            $date = Carbon::parse($sen->configDate)->format('YmdHis');
+
+        }
+        
+
+        //dd($date);
+        return response()->json(['configDate'=> $date]);
     }
 
 
