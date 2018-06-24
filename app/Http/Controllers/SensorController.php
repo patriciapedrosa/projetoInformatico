@@ -141,8 +141,4 @@ class SensorController extends Controller
         }
         return response()->json(['data' => $array]);
     }
-
-
-
-
 }
