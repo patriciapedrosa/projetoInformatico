@@ -21,16 +21,14 @@ class SensorController extends Controller
     {
         $thing = Thing::findOrFail($thing_id);
         $sensors = Sensor::where('thing_id', $thing_id)->orderBy('id')->paginate(10);
-        //$pins = Pin::where('sensor_id', $sensor->id);
         return view('sensor.list', compact('sensors', 'thing'));
     }
 
     public function showSensor($thing_id, $sensor_id)
     {
         $sensor = Sensor::findOrFail($sensor_id);
-        $pins = Pin::where('sensor_id', $sensor_id)->get();
-        //dd($pin->numero_pin);
-        return view('sensor.view_sensor', compact('sensor', 'pins'));
+        
+        return view('sensor.view_sensor', compact('sensor'));
     }
 
     /**
@@ -61,7 +59,7 @@ class SensorController extends Controller
         $sensor->save();
 
         return redirect()
-            ->route('sensor.list', compact('sensor', 'thing_id'));
+            ->route('sensor.list', compact('sensor', 'thing_id'))->with('success', 'Sensor adicionado com sucesso');
     }
 
     /**
@@ -73,7 +71,6 @@ class SensorController extends Controller
     public function edit($thing_id, $sensor_id)
     {
         $sensor = Sensor::findOrFail($sensor_id);
-        //$sensor_types = SensorType::all();
         return view('sensor.edit', compact('sensor'));
     }
 
@@ -97,7 +94,7 @@ class SensorController extends Controller
 
         return redirect()
             ->route('sensor.list', compact('thing_id'))
-            ->with('success', 'Sensor configurado com sucesso');
+            ->with('success', 'Sensor editado com sucesso');
     }
 
     /**
@@ -112,7 +109,7 @@ class SensorController extends Controller
         $sensor->delete();
         return redirect()
             ->route('sensor.list', compact('thing_id'))
-            ->with('success', 'Sensor apagado com sucesso');
+            ->with('success', 'Sensor removido com sucesso');
     }
 
 

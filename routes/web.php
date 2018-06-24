@@ -52,10 +52,4 @@ Route::middleware('auth')->get('/things/{thing}', 'ThingController@showthing')->
 Route::middleware('auth')->delete('things/{thing_id}/delete', 'ThingController@destroy')->name('thing.delete');
 Route::middleware('auth')->get('/thing/{thing}/edit','ThingController@edit')->name('thing.edit');//funcional
 Route::middleware('auth')->post('/thing/{thing}/update', 'ThingController@update')->name('thing.update');
-//Pins
-Route::middleware('auth')->get('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@create')->name('pin.create');
-Route::middleware('auth')->post('/things/{thing_id}/sensores/{sensor_id}/pins/create', 'PinController@store')->name('pin.store');
 
-Route::middleware('auth')->get('/rede', 'RedeController@show')->name('rede.show');
-Route::middleware('auth')->get('/rede/configurar', 'RedeController@configure')->name('rede.configure');
-Route::middleware('auth')->post('/rede/edit', 'RedeController@edit')->name('rede.edit');

@@ -1,5 +1,6 @@
 @extends('layouts.app') @section('content')
 
+
 <main class="main">
 <div class="container">
     <div class="card-body">
@@ -12,6 +13,7 @@
                 </div>
                 @if (count($things))
                 <table class="table table-striped">
+
 
                     <thead>
                         <tr>
@@ -61,6 +63,9 @@
                 <h2>Não foram encontrados things</h2>
             </div>
                 @endif
+                @if(session('success'))
+        @include('partials.success')
+@endif 
                 <div class="row justify-content-center">
                     <div class="pagination" align="middle"> {{$things->links()}}</div>
                 </div>
@@ -68,5 +73,6 @@
         </div>
     </div>
 </div>
+
 </main>
 @endsection

@@ -53,7 +53,7 @@ class ThingController extends Controller
         $thing->save();
 
         return redirect()
-        ->route('thing.list');
+        ->route('thing.list')
         ->with('success', 'Thing adicionada com sucesso');
     }
 
