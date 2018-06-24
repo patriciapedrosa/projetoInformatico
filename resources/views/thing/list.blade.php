@@ -12,6 +12,9 @@
                     </h3>
                 </div>
                 @if (count($things))
+                @if(session('success'))
+                @include('partials.success')
+                @endif
                 <table class="table table-striped">
 
 
@@ -45,11 +48,7 @@
                                 {{csrf_field()}}
                                 <button type="submit" class="btn btn-xs btn-danger">Remover</button>
                             </form> </a>
-                        
-                            
 
-
-                        
                             </td>
                         
 
@@ -62,10 +61,7 @@
 
                 <h2>Não foram encontrados things</h2>
             </div>
-                @endif
-                @if(session('success'))
-        @include('partials.success')
-@endif 
+                @endif 
                 <div class="row justify-content-center">
                     <div class="pagination" align="middle"> {{$things->links()}}</div>
                 </div>

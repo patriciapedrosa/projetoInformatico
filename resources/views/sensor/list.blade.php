@@ -12,6 +12,9 @@
                 </div>
 
                 @if (count($sensors))
+                @if(session('success'))
+                @include('partials.success')
+                @endif
                 <table class="table table-striped">
 
                     <thead>

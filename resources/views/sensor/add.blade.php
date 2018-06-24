@@ -8,9 +8,13 @@
                 <div class="card-header">
                     <h3>Adicionar Sensor
                     </h3>
+
                 </div>
                 <div class="card-body">
                 <div class="container">
+                    @if(count($errors) > 0)
+    @include('partials.errors')
+@endif
                     <form action="{{route('sensor.store', $thing->id)}}" method="post" class="form-group" enctype="multipart/form-data">
                         @include('sensor.components.add-edit')
                         <div class="form-group">

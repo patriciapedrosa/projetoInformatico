@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSensorRequest extends FormRequest
+class UpdateThingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,12 @@ class UpdateSensorRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|string|max:50',
-            'tipo' => 'required|between:0,1',
-            'grandeza' => 'required|string|max:50',
-            'inativo' => 'required|between:0,1',
-            'pin' => 'required|between:0,2|unique:sensors'
+            'ip' => 'required|ip',
+            'netmask' => 'required|ip',
+            'gateway' => 'required|ip',
+            'dns' => 'required|ip',
+            'ssid' => 'required|string|max:50',
+            'password' => 'required|string|max:50'
         ];
     }
 }

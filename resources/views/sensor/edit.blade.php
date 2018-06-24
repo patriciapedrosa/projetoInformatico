@@ -1,4 +1,5 @@
 @extends('layouts.app') @section('content')
+
 <main class="main">
 <div class="container">
     <div class="card-body">
@@ -7,9 +8,13 @@
                 <div class="card-header">
                     <h3>Editar sensor
                     </h3>
+                    
                 </div>
                 <div class="card-body">
                 <div class="container">
+                    @if(count($errors) > 0)
+    @include('partials.errors')
+@endif
                     <form action="{{route('sensor.update', [$sensor->thing_id, $sensor->id])}}" method="post" class="form-group" enctype="multipart/form-data">
 
                         @include('sensor.components.add-edit')

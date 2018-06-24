@@ -8,9 +8,13 @@
                 <div class="card-header">
                     <h3>Adicionar Thing
                     </h3>
+
                 </div>
                 <div class="card-body">
                 <div class="container">
+                    @if(count($errors) > 0)
+    @include('partials.errors')
+@endif
                     <form action="{{route('thing.store')}}" method="post" class="form-group" enctype="multipart/form-data">
                         <div class="form-group">
                             <b>

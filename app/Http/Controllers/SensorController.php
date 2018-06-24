@@ -9,6 +9,7 @@ use App\SensorType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\SensorResource;
+use App\Http\Requests\UpdateSensorRequest;
 
 class SensorController extends Controller
 {
@@ -52,7 +53,15 @@ class SensorController extends Controller
     public function store(Request $request, $thing_id)
     {
         $sensor = new Sensor();
-        $sensor->fill($request->all());
+        $validated = $this->validate($request,[
+            'nome' => 'required|string|max:50',
+            'tipo' => 'required|between:0,1',
+            'grandeza' => 'required|string|max:50',
+            'inativo' => 'required|between:0,1',
+            'pin' => 'required|between:0,2|unique:sensors'
+
+        ]);
+        $sensor->fill($validated);
         $sensor->configDate = Carbon::now();
         $thing = Thing::findOrFail($thing_id);
         $sensor->thing_id = $thing->id;
@@ -81,7 +90,7 @@ class SensorController extends Controller
      * @param  \App\Sensor  $sensor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $thing_id, $sensor_id)
+    public function update(UpdateSensorRequest $request, $thing_id, $sensor_id)
     {
         Sensor::findOrFail($sensor_id)->update([
             'nome' => $request->input('nome'),

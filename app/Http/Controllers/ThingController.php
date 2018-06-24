@@ -7,7 +7,7 @@ use App\Mac;
 use App\Sensor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\UpdateThingRequest;
 
 class ThingController extends Controller
 {
@@ -41,6 +41,16 @@ class ThingController extends Controller
     public function store(Request $request)
     {
         $thing = new Thing();
+        $validated = $this->validate($request,[
+            'ip' => 'required|ip',
+            'netmask' => 'required|ip',
+            'gateway' => 'required|ip',
+            'dns' => 'required|ip',
+            'ssid' => 'required|string|max:50',
+            'password' => 'required|string|max:50'
+
+        ]);
+
         $thing->fill($request->all());
 
         $mac = Mac::where('mac_adress', '=', $request->mac)->first();
@@ -86,7 +96,7 @@ class ThingController extends Controller
         return view('thing.edit',compact('thing'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateThingRequest $request, $id)
     {
 
         Thing::where('id',$id)->update([

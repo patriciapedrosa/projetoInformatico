@@ -23,10 +23,13 @@ class StoreSensorRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'nome' => 'required|string|max:50',
             'tipo' => 'required|between:0,1',
-            'leitura' => 'required|string|max:50'
+            'grandeza' => 'required|string|max:50',
+            'inativo' => 'required|between:0,1'
+            'pin' => 'required|between:0,2',
         ];
     }
 }
