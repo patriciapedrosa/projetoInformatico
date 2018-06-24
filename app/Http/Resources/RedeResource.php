@@ -21,6 +21,7 @@ class RedeResource extends JsonResource
             'dns' => $this->dns,
             'ssid' => $this->ssid,
             'password' => $this->password,
+            'configDate' => $this->configDate,
         ];
     }
 }

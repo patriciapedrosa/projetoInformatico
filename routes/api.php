@@ -23,13 +23,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/loginControladorManager', 'LoginControllerAPI@loginControladorManager');
 
 
-Route::post('/registerMac', 'MacControllerAPI@add'); //funciona
-Route::get('/networkConfiguration/{id}', 'RedeControllerAPI@getInformation'); //funciona
+Route::middleware('auth:api')->post('/registerMac', 'MacControllerAPI@add'); //funciona
+Route::middleware('auth:api')->get('/networkConfiguration/{id}', 'RedeControllerAPI@getInformation'); //funciona
 
-Route::get('/getsensores/{id}', 'SensorController@getSensores');
+Route::middleware('auth:api')->get('/getsensores/{id}', 'SensorController@getSensores');
 
-Route::get('/getThingConfigDate/{id}', 'ThingController@getData');
-Route::get('/getSensorConfigDate/{id}', 'SensorController@getData');
+Route::middleware('auth:api')->get('/getThingConfigDate/{id}', 'ThingController@getData');
+Route::middleware('auth:api')->get('/getSensorConfigDate/{id}', 'SensorController@getData');
 
 
 
