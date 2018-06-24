@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sensor extends Model
 {
 	protected $fillable = [
-       'nome', 'tipo', 'grandeza', 'inativo','pin','thing_id'
+       'nome', 'tipo', 'grandeza', 'inativo','pin','thing_id', 'id'
     ];
-    
 
     /*public function pins()
     {

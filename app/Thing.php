@@ -12,7 +12,7 @@ class Thing extends Model
 
     public function sensores()
     {
-        return $this->hasMany(\App\Sensor::class, 'sensor_id');
+        return $this->hasMany(\App\Sensor::class);
     }
 
     public function ConfiguradoToStr()

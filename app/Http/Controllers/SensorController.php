@@ -119,19 +119,27 @@ class SensorController extends Controller
     public function getSensores(string $mac){
         
         $thing = Thing::where('mac', $mac)->first();
-        $sensor = Sensor::where('thing_id', $thing->id)->get();
-
-        return SensorResource::collection($sensor);   
+        if($thing == null){
+            return response()->json(['error' => 'Invalid mac adress']);
+        }
+        return SensorResource::collection($thing->sensores);   
         
     }
-
+    //Obter data dos sensores de um thing
     public function getData(string $mac_address)
     {
-        $thing = Thing::where('mac', $mac_address)->first();
-        $sensor = Sensor::where('thing_id', $thing->id)->get();
-        dd($thing->id);
-        //$date = Carbon::parse($sensor->configDate)->format('YmdHis');
-        return $date;
+        $thing = Thing::where('mac', $mac_address)->with('sensores')->first();
+        if($thing == null){
+            return response()->json(['error' => 'Invalid mac adress']);
+        }
+        $array = [];
+        foreach ($thing->sensores as $sensor) {
+            $obj = [];
+            $obj['id'] = $sensor->id;
+            $obj['data'] = Carbon::parse($sensor->configDate)->format('YmdHis');
+            $array[] = $obj;
+        }
+        return response()->json(['data' => $array]);
     }
 
 
