@@ -38,6 +38,9 @@ class ThingController extends Controller
         $macs = Mac::where('configured', '=', 0)->get();
         return view('thing.add', compact('thing', 'macs'));
     }
+
+
+
     public function store(Request $request)
     {
         $thing = new Thing();

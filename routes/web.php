@@ -52,4 +52,5 @@ Route::middleware('auth')->get('/things/{thing}', 'ThingController@showthing')->
 Route::middleware('auth')->delete('things/{thing_id}/delete', 'ThingController@destroy')->name('thing.delete');
 Route::middleware('auth')->get('/thing/{thing}/edit','ThingController@edit')->name('thing.edit');//funcional
 Route::middleware('auth')->post('/thing/{thing}/update', 'ThingController@update')->name('thing.update');
+Route::middleware('auth')->get('/naoConfig/{mac_address}/create', 'MacControllerAPI@config')->name('mac.config');
 

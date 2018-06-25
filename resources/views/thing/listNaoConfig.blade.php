@@ -14,13 +14,16 @@
                     <thead>
                         <tr>
                             <th>MAC</th>
+                            
                         </tr>
                     </thead>
                     @foreach ($macs as $mac)
                     <tr>
                         <td>
                             {{$mac->mac_adress}}
+                            <a class="btn btn-xs btn-success" style="float:right" href="{{ route('mac.config', $mac)}}">+</a>
                         </td> 
+
                     </tr>
                     @endforeach
 
