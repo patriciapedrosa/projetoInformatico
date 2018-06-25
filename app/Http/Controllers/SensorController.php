@@ -93,6 +93,7 @@ class SensorController extends Controller
      */
     public function update(UpdateSensorRequest $request, $thing_id, $sensor_id)
     {
+        session(['id_thing' => $thing_id]);
         Sensor::findOrFail($sensor_id)->update([
             'nome' => $request->input('nome'),
             'tipo' => $request->input('tipo'),
