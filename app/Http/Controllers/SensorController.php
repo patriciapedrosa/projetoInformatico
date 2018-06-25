@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\SensorResource;
 use App\Http\Requests\UpdateSensorRequest;
+use App\Rules\PinRule;
 
 class SensorController extends Controller
 {
@@ -53,12 +54,13 @@ class SensorController extends Controller
     public function store(Request $request, $thing_id)
     {
         $sensor = new Sensor();
+        session(['id_thing' => $thing_id]);
         $validated = $this->validate($request,[
             'nome' => 'required|string|max:50',
             'tipo' => 'required|between:0,1',
             'grandeza' => 'required|string|max:50',
             'inativo' => 'required|between:0,1',
-            'pin' => 'required|between:0,2'
+            'pin' => ['required','between:0,2', new PinRule]
         ]);
         $sensor->fill($validated);
         $sensor->configDate = Carbon::now();
