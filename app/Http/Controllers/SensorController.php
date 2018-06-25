@@ -58,8 +58,7 @@ class SensorController extends Controller
             'tipo' => 'required|between:0,1',
             'grandeza' => 'required|string|max:50',
             'inativo' => 'required|between:0,1',
-            'pin' => 'required|between:0,2|unique:sensors'
-
+            'pin' => 'required|between:0,2'
         ]);
         $sensor->fill($validated);
         $sensor->configDate = Carbon::now();
