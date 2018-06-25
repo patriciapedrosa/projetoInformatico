@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sensor extends Model
 {
 	protected $fillable = [
-       'nome', 'tipo', 'grandeza', 'inativo','pin','thing_id', 'id'
+       'nome', 'tipo', 'grandeza', 'ativo','pin','thing_id', 'id'
     ];
 
     /*public function pins()
@@ -31,9 +31,9 @@ class Sensor extends Model
         return 'Unknown';
     }
 
-    public function inativoToStr()
+    public function ativoToStr()
     {
-        switch ($this->inativo) {
+        switch ($this->ativo) {
             case 0:
                 return 'Não';
             case 1:

@@ -27,8 +27,8 @@
                             </p>
 
                             <p>
-                                <b>Inativo:</b>
-                                @if(is_null($sensor->inativo)) {{"N/A"}} @else{{$sensor->inativoToStr()}} @endif
+                                <b>Ativo:</b>
+                                @if(is_null($sensor->ativo)) {{"N/A"}} @else{{$sensor->ativoToStr()}} @endif
                             </p>
 
 

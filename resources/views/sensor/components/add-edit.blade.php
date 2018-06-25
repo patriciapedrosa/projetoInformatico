@@ -33,10 +33,10 @@
 
 <div class="form-group">
     <b>
-    <label for="name" class="col-md-4 control-label">Inativo</label>
+    <label for="name" class="col-md-4 control-label">Ativo</label>
     </b>
-        <p><input type="radio" name="inativo" value="1" checked=""> Sim</p>
-        <p><input type="radio" name="inativo" value="0"> Não</p>
+        <p><input type="radio" name="ativo" value="1" checked=""> Sim</p>
+        <p><input type="radio" name="ativo" value="0"> Não</p>
 </div>
 
 

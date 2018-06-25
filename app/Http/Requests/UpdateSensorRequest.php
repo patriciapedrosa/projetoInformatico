@@ -28,7 +28,7 @@ class UpdateSensorRequest extends FormRequest
             'nome' => 'required|string|max:50',
             'tipo' => 'required|between:0,1',
             'grandeza' => 'required|string|max:50',
-            'inativo' => 'required|between:0,1',
+            'ativo' => 'required|between:0,1',
             'pin' => ['required','between:0,2', new PinRule]
         ];
     }

@@ -59,7 +59,7 @@ class SensorController extends Controller
             'nome' => 'required|string|max:50',
             'tipo' => 'required|between:0,1',
             'grandeza' => 'required|string|max:50',
-            'inativo' => 'required|between:0,1',
+            'ativo' => 'required|between:0,1',
             'pin' => ['required','between:0,2', new PinRule]
         ]);
         $sensor->fill($validated);
@@ -98,7 +98,7 @@ class SensorController extends Controller
             'nome' => $request->input('nome'),
             'tipo' => $request->input('tipo'),
             'grandeza' => $request->input('grandeza'),
-            'inativo' => $request->input('inativo'),
+            'ativo' => $request->input('ativo'),
             'pin' => $request->input('pin'),
             'configDate' => Carbon::now(),
         ]);

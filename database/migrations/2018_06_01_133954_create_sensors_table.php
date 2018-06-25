@@ -18,7 +18,7 @@ class CreateSensorsTable extends Migration
             $table->string('nome');
             $table->boolean('tipo');
             $table->string('grandeza');
-            $table->boolean('inativo');
+            $table->boolean('ativo');
             $table->integer('pin');
             $table->integer('thing_id');
             $table->timestamp("configDate");

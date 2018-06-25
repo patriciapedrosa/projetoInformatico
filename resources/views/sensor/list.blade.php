@@ -22,7 +22,7 @@
                             <th>Nome</th>
                             <th>Tipo</th>
                             <th>Grandeza</th>
-                            <th>Inativo</th>
+                            <th>Ativo</th>
                             <th>pin</th>
                             <th>Acoes</th>
                         </tr>
@@ -39,7 +39,7 @@
                         <td>
                             {{$sensor->grandeza}}
                         </td>
-                        <td>{{$sensor->inativoToStr()}}</td>
+                        <td>{{$sensor->ativoToStr()}}</td>
                         <td>{{$sensor->pin}}</td>
                         <td>
                             <a class="btn btn-info" href="{{route('sensor.show', [$thing->id,$sensor->id])}}">Ver</a>
