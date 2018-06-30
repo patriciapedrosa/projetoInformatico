@@ -20,7 +20,7 @@ class SensorResource extends JsonResource
             'tipo' => $this->tipo,
             'pin' => $this->pin,
             'grandeza' => $this->grandeza,
-            'ativo' => $this->inativo,
+            'ativo' => $this->ativo,
             ];
 
     }
