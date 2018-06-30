@@ -26,7 +26,7 @@ class UpdateSensorRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:50',
-            'tipo' => 'required|between:0,1',
+            'tipo' => ['required','between:0,1', new TipoRule],
             'grandeza' => 'required|string|max:50',
             'ativo' => 'required|between:0,1',
             'pin' => ['required','between:0,2', new PinRule]

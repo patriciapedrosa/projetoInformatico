@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\SensorResource;
 use App\Http\Requests\UpdateSensorRequest;
 use App\Rules\PinRule;
+use App\Rules\TipoRule;
 
 class SensorController extends Controller
 {
@@ -57,7 +58,7 @@ class SensorController extends Controller
         session(['id_thing' => $thing_id]);
         $validated = $this->validate($request,[
             'nome' => 'required|string|max:50',
-            'tipo' => 'required|between:0,1',
+            'tipo' => ['required','between:0,1', new TipoRule($request->pin)],
             'grandeza' => 'required|string|max:50',
             'ativo' => 'required|between:0,1',
             'pin' => ['required','between:0,2', new PinRule]
