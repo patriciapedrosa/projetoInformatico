@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class SensorResource extends JsonResource
 {
@@ -21,6 +22,7 @@ class SensorResource extends JsonResource
             'pin' => $this->pin,
             'grandeza' => $this->grandeza,
             'ativo' => $this->ativo,
+            'configDate' => Carbon::parse($this->configDate)->format('YmdHis'),
             ];
 
     }
