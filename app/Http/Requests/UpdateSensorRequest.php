@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\PinRule;
 use App\Rules\TipoRule;
+use App\Sensor;
 
 
 class UpdateSensorRequest extends FormRequest
@@ -26,13 +27,16 @@ class UpdateSensorRequest extends FormRequest
      */
     public function rules()
     {
+        //Sensor::delete($this->pin);
         $pin = $this->pin;
+        $id =$this->sensor_id;
+
         return [
             'nome' => 'required|string|max:50',
             'tipo' => ['required','between:0,1', new TipoRule($pin)],
             'grandeza' => 'required|string|max:50',
             'ativo' => 'required|between:0,1',
-            'pin' => ['required','between:0,2', new PinRule]
+            'pin' => ['required','between:0,2', new PinRule($id)]
         ];
     }
 }

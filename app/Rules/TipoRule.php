@@ -42,6 +42,6 @@ class TipoRule implements Rule
      */
     public function message()
     {
-        return 'sensor analogico have to be pin 0';
+        return 'Pin AO is only for analog sensors';
     }
 }

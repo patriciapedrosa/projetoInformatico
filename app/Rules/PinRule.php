@@ -7,14 +7,15 @@ use App\Sensor;
 
 class PinRule implements Rule
 {
+    protected $id;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id)
     {
-        //
+        $this->id = $id;
     }
 
     /**
@@ -26,7 +27,9 @@ class PinRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return is_null(Sensor::where('pin',$value)->where('thing_id', session('id_thing'))->first());
+
+            return is_null(Sensor::where('pin',$value)->where('id','!=', $this->id)->where('thing_id', session('id_thing'))->first());
+
     }
 
     /**
