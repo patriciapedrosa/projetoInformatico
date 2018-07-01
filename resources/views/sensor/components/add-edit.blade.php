@@ -24,9 +24,9 @@
     <b>
     <label for="name" class="col-md-4 control-label">Pin</label>
     </b>
-    <p><input type="radio" name="pin" value="0" checked=""> 0 </p>
-       <p> <input type="radio" name="pin" value="1"> 1 </p>
-        <p><input type="radio" name="pin" value="2" > 2
+    <p><input type="radio" name="pin" value="A0" checked=""> A0 </p>
+       <p> <input type="radio" name="pin" value="D1"> D1 </p>
+        <p><input type="radio" name="pin" value="D2" > D2
         
          </p>
 </div>

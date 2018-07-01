@@ -36,7 +36,7 @@ class UpdateSensorRequest extends FormRequest
             'tipo' => ['required','between:0,1', new TipoRule($pin)],
             'grandeza' => 'required|string|max:50',
             'ativo' => 'required|between:0,1',
-            'pin' => ['required','between:0,2', new PinRule($id)]
+            'pin' => ['required', new PinRule($id)]
         ];
     }
 }

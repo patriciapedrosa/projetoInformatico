@@ -19,7 +19,7 @@ class CreateSensorsTable extends Migration
             $table->boolean('tipo');
             $table->string('grandeza');
             $table->boolean('ativo');
-            $table->integer('pin');
+            $table->enum('pin', ['A0', 'D1','D2']);
             $table->integer('thing_id');
             $table->timestamp("configDate");
             $table->timestamps();

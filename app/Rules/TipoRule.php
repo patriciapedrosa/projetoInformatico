@@ -27,7 +27,7 @@ class TipoRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if($this->pin == 0){
+        if($this->pin == 'A0'){
             return $value == 1;
        }else{
         return $value == 0;

@@ -61,7 +61,7 @@ class SensorController extends Controller
             'tipo' => ['required','between:0,1', new TipoRule($request->pin)],
             'grandeza' => 'required|string|max:50',
             'ativo' => 'required|between:0,1',
-            'pin' => ['required','between:0,2', new PinRule($request->id)]
+            'pin' => ['required', new PinRule($request->id)]
         ]);
         $sensor->fill($validated);
         $sensor->configDate = Carbon::now();
